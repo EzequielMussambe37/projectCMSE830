@@ -5,3 +5,9 @@
 # make the story simple by creating simple graph, 
 # highlight the focus by changing the colors ( grey for no focus, and any bright and colorblind for the focus one)
 # colar numeros nos plots onde precisamos necessariamente...
+
+'''
+    colorblind. importante escolher bem,
+    python tem  spetrum for colorblind...
+    como mudaram as colors no python libraries tipo seaborn, matplotlib,etc...
+'''
