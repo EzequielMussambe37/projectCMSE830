@@ -1,4 +1,4 @@
-# Data Science Project on University Recommentation (CMSE830)
+# Data Science Project on University Recommendation System (CMSE830)
 ## <span style="color:blue">File and data availbles</span>
 * recommendation.csv - this is the dataset..
 * classApp.py - the main python file where all the logic for the app can be found
