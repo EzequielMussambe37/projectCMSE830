@@ -12,9 +12,6 @@ class mainApp(object):
         self.page_title = "University Recommendation System"
         self.page_icon = ":money_with_wings:"
         self.layout = "centered" #centered
-        st.set_page_config(self.page_title,self.layout)
-        st.title(self.page_title)
-        self.df = object
 
     def dataVisusalization(self):
         #operation to show
@@ -25,11 +22,33 @@ class mainApp(object):
         pass
     
     def read_dataframe(self,data):
-        self.df = pd.read_csv(data)
-        return self.df
+         
+        data
 
+    def run(self,data):
+        st.set_page_config(self.page_title,self.layout)
+        st.title(self.page_title)
+        return self.read_dataframe(data)
 
 if __name__ == '__main__':
     data_file = "recommendation.csv"
     app = mainApp()
     app.read_dataframe(data_file)
+    app.run(data_file)
+    df = pd.read_csv(data_file)
+    df
+
+    "---"
+    sns.histplot(
+            data=df,
+            x="toeflScore",
+            hue=None,
+            bins=200
+        )
+
+    plt.title("Toefl Sscore")
+    st.pyplot(plt.gcf()) # get current figure
+
+
+
+    
