@@ -1,0 +1,7 @@
+
+# nao remove ttotalmente de grid,
+# remove extra dot in the trender
+# podes usar label em vez de legend... mas make the label as clear as possible...
+# make the story simple by creating simple graph, 
+# highlight the focus by changing the colors ( grey for no focus, and any bright and colorblind for the focus one)
+# colar numeros nos plots onde precisamos necessariamente...
