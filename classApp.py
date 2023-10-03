@@ -1,6 +1,8 @@
 
 import streamlit as st
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt 
 simple_plot_List = ["pairplot", "histgram","barplot","violinplot","boxplot"]
 
 advance_plot_list = []
