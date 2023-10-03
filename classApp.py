@@ -36,8 +36,6 @@ if __name__ == '__main__':
     app.read_dataframe(data_file)
     app.run(data_file)
     df = pd.read_csv(data_file)
-    df
-
     "---"
     sns.histplot(
             data=df,
