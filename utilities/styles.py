@@ -17,4 +17,4 @@ def styleSettings():
                                     "nav-link":{"color":'black',"font-size":'20px',"text-align":'left',"margin":'0px',"--hover-color":'blue'},
                                     "nav-link-selected":{"background-color":'green'}
             },)
-    return selecteds
+    return selected
