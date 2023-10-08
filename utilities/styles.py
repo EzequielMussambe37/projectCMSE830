@@ -7,10 +7,10 @@ def styleSettings():
     selected = option_menu(
                 menu_title = None,
                 options=["Main","EDA","ML"],
-                icons=["home","g","g"],
+                icons=["house","g","g"],
                 menu_icon = None,
                 default_index=0,
-                orientation="vertical",
+                # orientation="horizontal",
                 styles= {
                     "container":{"padding":"4!import","background-color":"lightgrey"},
                                     "icon":{"color":'black',"font-size":'23px'},

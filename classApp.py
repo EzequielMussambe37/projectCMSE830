@@ -16,12 +16,17 @@ class mainApp:
 
     def __init__(self):
         self.apps = []
+
+    def ret(self):
+        return self.options_menu
     def run():
         configFile.hideConfigOption()
         with st.sidebar:
-           selected = styles.styleSettings() 
-        st.write(selected)
-
+            selected = styles.styleSettings() 
+        try:
+            configFile.options_menu()[selected].app()
+        except:
+            pass
 
 if __name__ == '__main__':
     
