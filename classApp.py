@@ -29,6 +29,5 @@ class mainApp:
             pass
 
 if __name__ == '__main__':
-    
     mainApp.run()
     data_file = "recommendation.csv"
