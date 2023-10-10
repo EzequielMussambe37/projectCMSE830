@@ -1,5 +1,7 @@
 import streamlit as st
 from utilities import dataMani , plots
+import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 
 def app():
@@ -35,8 +37,22 @@ def features(data,column=[]):
         if key == "boxplot":
             if value == True:
                 x = xy_dataframe(data,key)
+                #st.button("click to show")
                 print(x[0])
-                plots.seanborn_plot(x[0])
+                #st.selectbox():
+                hue = st.selectbox(
+                "hue",
+                tuple([None]+ dataMani.read_data(x[0],[]).columns.tolist()),
+                    help="Insert a column that can be used as target when plot xy graph",
+                    #key=key+'1'
+                )   
+                plots.seanborn_plot(x[0],hue)
+                # sns.pairplot(x[0])
+                # plt.title("Perimeter Mean")
+                # st.pyplot(plt.gcf()) 
+                # fig = plt.figure(figsize=(9,7))
+                # n = sns.pairplot(data,hue)
+                # st.pyplot(plt.gcf())
                 #st.plotly_chart(plots.seanborn_plot(x),use_container_width=True)
 
    

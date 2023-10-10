@@ -2,12 +2,13 @@ import streamlit as st
 import seaborn as sns
 import plotly as ply
 import plotly.figure_factory as ff
+import matplotlib.pyplot as plt
 
 
 
 
 def plot_graph(type="", 
-               x_frame=[],y_frame=[],hue=None,title=""):
+            x_frame=[],y_frame=[],hue=None,title=""):
     pass
     
 def plotly_group(hist_data,group_labels):
@@ -16,7 +17,8 @@ def plotly_group(hist_data,group_labels):
 
     return fig
 
-def seanborn_plot(data,hue):
+def seanborn_plot(data,hue=None):
     
-    n = sns.pairplot(data,hue)
-    st.plotly_chart(n,use_container_width=True)
+    sns.pairplot(data,hue=hue)
+    plt.title("Perimeter Mean")
+    st.pyplot(plt.gcf()) 
