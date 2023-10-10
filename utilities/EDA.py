@@ -37,29 +37,28 @@ def features(data,column=[]):
         if key == "boxplot":
             if value == True:
                 x = xy_dataframe(data,key)
-                #st.button("click to show")
-                print(x[0])
-                #st.selectbox():
-                hue = st.selectbox(
-                "hue",
-                tuple([None]+ dataMani.read_data(x[0],[]).columns.tolist()),
-                    help="Insert a column that can be used as target when plot xy graph",
-                    #key=key+'1'
-                )   
-                plots.seanborn_plot(x[0],hue)
-                # sns.pairplot(x[0])
-                # plt.title("Perimeter Mean")
-                # st.pyplot(plt.gcf()) 
-                # fig = plt.figure(figsize=(9,7))
-                # n = sns.pairplot(data,hue)
-                # st.pyplot(plt.gcf())
-                #st.plotly_chart(plots.seanborn_plot(x),use_container_width=True)
-
-   
+                tool_object = tools(x[0])
+                plots.seanborn_pairplot(x[0],tool_object)
+                
+        if key == "dynamic scatter":
+            
+            #df = xy_dataframe(data,[])
+            if value == True:
+                df = dataMani.read_data(data,[])
+                x = xy_dataframe(data,key)
+                if len(x[1]) > 0:
+                    print( x[0].columns.tolist()[0])
+                    print(x[1].columns.tolist()[0])
+                    y__label = x[1].columns.tolist()[0]
+                    x__label = x[0].columns.tolist()
+                    tool_object = tools(data)
+                # print()
+                    plots.dynamic_scatter(df,x__label,y__label,tool_object)
+            
     return df
 
 def plot_names():
-    names = ["barplot","boxplot","matplot","l"]
+    names = ["barplot","boxplot","matplot","dynamic scatter"]
     ss= {}
     column1,column2 = st.columns(2)
     for index, name in enumerate(names,1):
@@ -81,6 +80,7 @@ def xy_dataframe(data,key):
         column1, column2 = st.columns([0.9, 0.1],gap="small")
     x_frame = []
     y_target = []
+    object_targeted = {}
     with column1:
         x_variables = st.multiselect(
             "X Features",
@@ -100,5 +100,33 @@ def xy_dataframe(data,key):
             )
 
         if target != " ":
-            y_target = dataMani.read_data(data,target)
+            y_target = dataMani.read_data(data,[target])
+            #object_targeted[target] = y_target
     return [x_frame,y_target]
+
+
+
+def tools(data):
+
+    column1,column2,column3= st.columns(3)
+    #print(data)
+    with column1:
+        hue = st.selectbox(
+                    "hue",
+                    tuple([None]+ dataMani.read_data(data,[]).columns.tolist()),
+                        help="Insert a column that can be used as target when plot xy graph",
+                        #key=key+'1'
+        ) 
+    with column2:
+        diag_kind = st.selectbox(
+                    "diagonal kind",
+                    ("auto", "hist", "kde", None)
+                        #key=key+'1'
+        ) 
+    with column3:
+        palette = st.selectbox(
+                    "palette-color",
+                    ("rocket","rocket_r","Spectral", "mako","coolwarm","viridis","cubehelix","YlOrBr","Blues")
+                        #key=key+'1'
+        ) 
+    return {"hue":hue,"diag_kind":diag_kind,"palette_color":palette} 
