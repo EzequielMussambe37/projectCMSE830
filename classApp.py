@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt 
 import numpy as np
 import math
-from utilities import configFile,styles
+from utilities import configFile,styles, EDA
 
 
 
@@ -19,15 +19,16 @@ class mainApp:
 
     def ret(self):
         return self.options_menu
-    def run():
+    def run(data):
         configFile.hideConfigOption()
         with st.sidebar:
             selected = styles.styleSettings() 
         try:
-            configFile.options_menu()[selected].app()
+            configFile.options_menu()[selected].app(data)
         except:
             pass
-
+        #EDA.plots(data)
 if __name__ == '__main__':
-    mainApp.run()
+    f = pd.read_csv(f"chances.csv")
+    mainApp.run(f)
     data_file = "recommendation.csv"
