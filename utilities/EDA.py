@@ -11,7 +11,7 @@ def app():
     features(f)
     st.markdown("""---""")
 def features(data,column=[]):
-    p = []
+    
     df = object
     plots_object = object
     with st.sidebar:
@@ -33,16 +33,21 @@ def features(data,column=[]):
         if key == "barplot":
             if value == True:
                 x = xy_dataframe(data,key)
+                tool_object = tools(x[0])
+                plots.boxplot(x[0],tool_object)
                 #st.plotly_chart(plots.plotly_group(x,x.columns.tolist()), use_container_width=True)
-        if key == "boxplot":
+        if key == "pairplot":
             if value == True:
                 x = xy_dataframe(data,key)
                 tool_object = tools(x[0])
-                plots.seanborn_pairplot(x[0],tool_object)
+                box_plot = plots.seanborn_pairplot(x[0],tool_object)
+                #st.pyplot(box_plot)
                 
+                st.pyplot(box_plot,clear_figure=False) 
         if key == "dynamic scatter":
             
-            #df = xy_dataframe(data,[])
+            print("this is the dynamically....")
+            print(key)
             if value == True:
                 df = dataMani.read_data(data,[])
                 x = xy_dataframe(data,key)
@@ -52,13 +57,13 @@ def features(data,column=[]):
                     y__label = x[1].columns.tolist()[0]
                     x__label = x[0].columns.tolist()
                     tool_object = tools(data)
-                # print()
-                    plots.dynamic_scatter(df,x__label,y__label,tool_object)
-            
+                    print(tool_object)
+                    scatter_dynamic = plots.dynamic_scatter(df,x__label,y__label,tool_object)
+                    st.plotly_chart(scatter_dynamic, use_container_width=True)
     return df
 
 def plot_names():
-    names = ["barplot","boxplot","matplot","dynamic scatter"]
+    names = ["barplot","boxplot","matplot","dynamic scatter","pairplot"]
     ss= {}
     column1,column2 = st.columns(2)
     for index, name in enumerate(names,1):
@@ -76,8 +81,8 @@ def plot_names():
 def xy_dataframe(data,key):
     
     column1, column2 = st.columns([0.7, 0.3],gap="small")
-    if key in ["barplot","boxplot"]:
-        column1, column2 = st.columns([0.9, 0.1],gap="small")
+    # if key in ["barplot","boxplot"]:
+    #     column1, column2 = st.columns([0.9, 0.1],gap="small")
     x_frame = []
     y_target = []
     object_targeted = {}
@@ -89,7 +94,7 @@ def xy_dataframe(data,key):
         )
         if len(x_variables)>0:
             x_frame = dataMani.read_data(data,x_variables)
-    if key not in ["barplot","boxplot"]:
+    if key not in ["barplot","boxplot","pairplot"]:
         with column2:
             target = st.selectbox(
                 "Target",
@@ -115,18 +120,15 @@ def tools(data):
                     "hue",
                     tuple([None]+ dataMani.read_data(data,[]).columns.tolist()),
                         help="Insert a column that can be used as target when plot xy graph",
-                        #key=key+'1'
         ) 
     with column2:
         diag_kind = st.selectbox(
                     "diagonal kind",
-                    ("auto", "hist", "kde", None)
-                        #key=key+'1'
+                    ("auto", "hist", "kde", None),
         ) 
     with column3:
         palette = st.selectbox(
                     "palette-color",
-                    ("rocket","rocket_r","Spectral", "mako","coolwarm","viridis","cubehelix","YlOrBr","Blues")
-                        #key=key+'1'
+                    ("rocket","rocket_r","Spectral", "mako","coolwarm","viridis","cubehelix","YlOrBr","Blues"),
         ) 
     return {"hue":hue,"diag_kind":diag_kind,"palette_color":palette} 
