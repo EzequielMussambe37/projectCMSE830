@@ -21,12 +21,12 @@ def plotly_group(hist_data,group_labels):
 
 def seanborn_pairplot(data,tool_object):
     print(data)
-    n = sns.pairplot(data,hue=tool_object["hue"],
+    pairplot = sns.pairplot(data,hue=tool_object["hue"],
                      diag_kind=tool_object["diag_kind"],
                      palette=tool_object["palette_color"])
-    plt.title("Perimeter Mean")
-    st.pyplot(plt.gcf()) 
-    
+    #plt.title("Perimeter Mean")
+    #st.pyplot(plt.gcf()) 
+    return pairplot
 def dynamic_scatter(data,x,y,tool_object):
     print(data)
     print(x)
@@ -35,5 +35,6 @@ def dynamic_scatter(data,x,y,tool_object):
     fig = px.scatter(data, x=x, y=y, color=tool_object["hue"])
     #fig.show()
     #st.pyplot(plt.gcf())
-    st.plotly_chart(fig, use_container_width=True)
+    return fig
+    #st.plotly_chart(fig, use_container_width=True)
     # 
