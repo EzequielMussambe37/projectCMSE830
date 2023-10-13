@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
+<<<<<<< HEAD
 def app(data):
     f = data
     #f.drop(f.columns[f.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
@@ -24,6 +25,18 @@ def app(data):
     # st.markdown("""---""")
     
 def features(data,column=[]):
+=======
+def app():
+    st.title("Data Visualization Main")
+    f= dataMani.upload_single_file()
+    st.markdown("""---""")
+    features(f)
+    st.markdown("""---""")
+def features(data):
+    df = object
+    plots_object = object
+    with st.sidebar:
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
 
     plots_selection(data)
 # def features(data,column=[]):
@@ -206,6 +219,43 @@ def xy_dataframe_pairplot(data):
 
 
 
+<<<<<<< HEAD
+=======
+    if selection == "All":
+        with st.expander("See the table"):
+            df = dataMani.read_data(data,[])
+            st.dataframe(df)
+    for key, value in plots_object.items():
+        
+        if key == "barplot":
+            if value == True:
+                x = xy_dataframe(data,key)
+                #st.plotly_chart(plots.plotly_group(x,x.columns.tolist()), use_container_width=True)
+        if key == "pairplot":
+            if value == True:
+                x = xy_dataframe(data,key)
+                tool_object = tools(x[0],key)
+                pair = plots.seanborn_pairplot(x[0],tool_object)
+                st.pyplot(pair)
+                st.markdown("""___""")
+        if key == "dynamic scatter":
+            
+            #df = xy_dataframe(data,[])
+            if value == True:
+                df = dataMani.read_data(data,[])
+                x = xy_dataframe(data,key)
+                if len(x[1]) > 0:
+                    print( x[0].columns.tolist()[0])
+                    print(x[1].columns.tolist()[0])
+                    y__label = x[1].columns.tolist()[0]
+                    x__label = x[0].columns.tolist()
+                    tool_object = tools(data,key)
+                # print()
+                    scatter = plots.dynamic_scatter(df,x__label,y__label,tool_object)
+                    st.plotly_chart(scatter,use_container_width=True)
+                st.markdown("""___""")
+    return df
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
 
 def plot_names():
     names = ["barplot","boxplot","matplot","dynamic scatter","pairplot"]
@@ -230,7 +280,7 @@ def xy_dataframe(data,key):
     #     column1, column2 = st.columns([0.9, 0.1],gap="small")
     x_frame = []
     y_target = []
-    object_targeted = {}
+
     with column1:
         x_variables = st.multiselect(
             "X Features",
@@ -255,6 +305,7 @@ def xy_dataframe(data,key):
 
 
 
+<<<<<<< HEAD
 def tool_scatter(data,key):
 
     column1,column2,column3= st.columns(3)
@@ -284,6 +335,9 @@ def tool_scatter(data,key):
 
 
 def tool_pairplot(data):
+=======
+def tools(data,key):
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
 
     column1,column2,column3= st.columns(3)
     #print(data)
@@ -291,20 +345,34 @@ def tool_pairplot(data):
         hue = st.selectbox(
                     "hue",
                     tuple([None]+ dataMani.read_data(data,[]).columns.tolist()),
+<<<<<<< HEAD
                         help="Insert a column that can be used as target when plot xy graph",
                         key="apirplot-column1"
+=======
+                    key=key+"2",
+                    help="Insert a column that can be used as target when plot xy graph",
+                        #key=key+'1'
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
         ) 
     with column2:
         diag_kind = st.selectbox(
                     "diagonal kind",
                     ("auto", "hist", "kde", None),
+<<<<<<< HEAD
                     key="apirplot-column2"
+=======
+                    key=key+'3'
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
         ) 
     with column3:
         palette = st.selectbox(
                     "palette-color",
                     ("rocket","rocket_r","Spectral", "mako","coolwarm","viridis","cubehelix","YlOrBr","Blues"),
+<<<<<<< HEAD
 
                     key="apirplot-column3"
+=======
+                    key=key+'4'
+>>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
         ) 
     return {"hue":hue,"diag_kind":diag_kind,"palette_color":palette} 
