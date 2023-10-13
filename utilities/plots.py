@@ -24,7 +24,6 @@ def seanborn_pairplot(data,tool_object):
     pairplot = sns.pairplot(data,hue=tool_object["hue"],
                      diag_kind=tool_object["diag_kind"],
                      palette=tool_object["palette_color"])
-<<<<<<< HEAD
     return n 
 
 def boxplot(data,tool_object):
@@ -36,7 +35,7 @@ def dynamic_scatter(data,x,y,tool_object):
     # color=tool_object["hue"]
     fig = px.scatter(data, x=x, y=y,color=tool_object["hue"])
     return fig
-=======
+
     #plt.title("Perimeter Mean")
     #st.pyplot(plt.gcf()) 
     return pairplot
@@ -50,5 +49,4 @@ def dynamic_scatter(data,x,y,tool_object):
     #st.pyplot(plt.gcf())
     return fig
     #st.plotly_chart(fig, use_container_width=True)
-    # 
->>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
+

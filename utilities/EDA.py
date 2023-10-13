@@ -4,28 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-<<<<<<< HEAD
-def app(data):
-    f = data
-    #f.drop(f.columns[f.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
-    print("dddddooosssososo")
-    print(f)
-    with st.expander("See explanation"):
-        xy_dataframe_scatter(f,"scar")
-
-    with st.expander("new"):
-        xy_dataframe_scatter(f,"tt")
 
 
 
-    # st.title("Data Visualization Main")
-    # f= dataMani.upload_single_file()
-    # st.markdown("""---""")
-    # features(f)
-    # st.markdown("""---""")
-    
-def features(data,column=[]):
-=======
+
 def app():
     st.title("Data Visualization Main")
     f= dataMani.upload_single_file()
@@ -36,8 +18,6 @@ def features(data):
     df = object
     plots_object = object
     with st.sidebar:
->>>>>>> 02d5830c308e189119c0c4f72a4062d22e22e12c
-
     plots_selection(data)
 # def features(data,column=[]):
 
