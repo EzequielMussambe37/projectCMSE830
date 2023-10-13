@@ -20,11 +20,16 @@ def load_data():
 
 def defaultProject(data):
     
-
-    column1,column2 = st.columns(2,gap="large")
+    st.markdown("<h2 style='text-align: center; color: green;'>Exploratory Data Analysis</h2>", unsafe_allow_html=True)
+    st.header("",divider="blue")
+    st.write("""Explorer different attributes 
+             from the dataset with those defaults plots """)
     
-
     st.markdown("""___""")
+    column1,column2 = st.columns(2,gap="large")
+
+
+  
     
     with column1:
         st.title("histogram")
@@ -33,7 +38,7 @@ def defaultProject(data):
         fig = px.histogram(data, x="CGPA")
         st.plotly_chart(fig,use_container_width=True)
     with column2:
-        st.title("Heatmap")
+        st.header("Heatmap")
         st.write("file one check o")
         print(data[["CGPA"]])
         heat = sns.pairplot(data[["CGPA"]])

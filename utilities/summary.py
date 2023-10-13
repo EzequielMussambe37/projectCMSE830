@@ -4,8 +4,8 @@ from utilities import dataMani
 
 def app():
     data = dataMani.read_file("csv",",", "chances.csv")
-    
-    st.header("Chances of Admission to Graduate Program",divider="green")
+    st.markdown("<h2 style='text-align: center; color: blue;'>Chances of Admission to Graduate Program</h2>", unsafe_allow_html=True)
+    st.header("",divider="green")
     st.write("This is a reason size dataset with 400 data points ")
     st.dataframe(data)
     st.markdown("""___""")
@@ -21,5 +21,3 @@ def app():
         st.header("Correlation",divider="green")
         st.write("Dataset  overall correlation")
         st.dataframe(data.corr())
-        
-    
