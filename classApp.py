@@ -7,8 +7,7 @@ import numpy as np
 import math
 from utilities import configFile,styles
 
-
-
+# st.set_page_config(layout = "wide")
 simple_plot_List = ["pairplot", "histgram","barplot","violinplot","boxplot"]
 
 advance_plot_list = []

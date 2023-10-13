@@ -35,7 +35,7 @@ def upload_single_file():
         extension = uploaded.name.split(".")[1].strip().lower()
        
         return read_file(extension,text_delimeter[delimiter],uploaded)
-
+@st.cache_data
 def read_file(extension,delimiter, file):
 
     if extension == "csv":
