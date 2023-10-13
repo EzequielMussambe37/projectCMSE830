@@ -32,8 +32,7 @@ def boxplot(data,tool_object):
                     palette=tool_object["palette_color"])
     return s
 def dynamic_scatter(data,x,y,tool_object):
-    # color=tool_object["hue"]
-    fig = px.scatter(data, x=x, y=y,color=tool_object["hue"])
+    fig = px.scatter(data, x=x, y=y, color=tool_object["hue"])
     return fig
 
     #plt.title("Perimeter Mean")

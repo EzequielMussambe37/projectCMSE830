@@ -15,7 +15,6 @@ def read_data(df,columns):
     
 def upload_single_file():
     
-    
     options = upload_load_ExistedFile()
     print(options)
     if options =="Load Existed File":
