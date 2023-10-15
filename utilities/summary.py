@@ -1,15 +1,10 @@
 import streamlit as st
-from PIL import Image
 from utilities import dataMani 
 
 
 
 def app():
-    
-    image = Image.open("./data.jpg")
     data = dataMani.read_file("csv",",", "chances.csv")
-    
-    
     column5, column6 = st.columns([.7,.3])
     st.markdown("""<h2 style='text-align: center; color: white;'>Data Science Project</h2>""",unsafe_allow_html=True) 
     st.markdown("""<h3 style='text-align: center; color: blue;'>Chances of Admission to a university based on quantitative factors</h3>
