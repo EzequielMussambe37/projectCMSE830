@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 
 
 def styleSettings():
-
+    
     selected = option_menu(
                 menu_title = None,
                 options=["Overview","EDA", "Dynamic EDA","Regression Analysis"],
