@@ -24,7 +24,6 @@ def defaultProject(data):
     st.header("",divider="blue")
     st.write("""Explorer different attributes 
              from the dataset with those defaults plots """)
-    
     st.markdown("""___""")
     column1,column2 = st.columns(2,gap="large")
 
