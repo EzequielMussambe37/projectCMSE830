@@ -47,11 +47,11 @@ def app():
                 """,unsafe_allow_html=True)
 
     st.caption('**Table 1.** DataFrame.')
-    # st.dataframe(data)
-    MIN_HEIGHT = 50
-    MAX_HEIGHT = 500
-    ROW_HEIGHT = 60
-    AgGrid(data,fit_columns_on_grid_load=True,height=min(MIN_HEIGHT + len(data) * ROW_HEIGHT, MAX_HEIGHT))
+    st.dataframe(data)
+    # MIN_HEIGHT = 50
+    # MAX_HEIGHT = 500
+    # ROW_HEIGHT = 60
+    # AgGrid(data,fit_columns_on_grid_load=True,height=min(MIN_HEIGHT + len(data) * ROW_HEIGHT, MAX_HEIGHT))
         
     # with column1:
     st.markdown("<h4 style='text-align:center;'>Statistics Summary</h4>",unsafe_allow_html=True)
