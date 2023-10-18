@@ -4,12 +4,113 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 
+
+
+#PLOTLY PLOTS
+def plotly_scatter(data,x,y,color):
+    fig = px.scatter(data,x=x,y=y,color=color)
+
+    return fig
+
+def plotly_boxplot(data,column):
+    fig = px.box(data[column],points="outliers")
+    fig.update_layout(showlegend=False)
+    fig.update_yaxes(showgrid=False)
+    fig.update_traces(quartilemethod="exclusive")
+
+    return fig
+
+def plotly_violin(data,y="CGPA"):
+    
+    fig = go.Figure(data=go.Violin(y=data, box_visible=True, 
+                                   line_color='black',meanline_visible=True, fillcolor='lightseagreen', opacity=0.6,
+                               x0=y))
+
+    fig.update_layout(yaxis_zeroline=False)
+    return fig
+
+def plotly_bar(data, x="CGPA",orientation="h"):
+    
+    result = px.bar(data, x=x,orientation=orientation, color_discrete_sequence=["#0083B8"]*len(data))
+    return result
+
+# SEABORN PPLOTTTTSS===================
+@st.cache_data
+def seaborn_pairwise(data,columns,hue=None):
+    #sns.set_theme(style="ticks")
+    # fig = define_size()
+    fig = sns.pairplot(data[columns], hue=hue)
+    
+    return fig 
+    
+    
+def seaborn_heatmap(data,columns):
+    
+    print(data[columns])
+    
+    fig = define_size()
+    # fmt="d", linewidths=.5
+    if len(columns) > 1:
+        sns.heatmap(data[columns].corr(), annot=True)
+    else:
+        sns.heatmap(data[columns], annot=True)
+        
+    return fig
+def seaborn_boxplot(data,columns):
+    fig = define_size()
+    n = sns.boxplot(data[columns])
+    return fig
+def pairplot(data,columns=["CGPA"], hue=None):
+    result = sns.pairplot(data[columns],hue = hue)
+    return result
+def seaborn_hist(data,x="CGPA"):
+    
+    fig = define_size()
+    n = sns.histplot(x=x,data=data)
+    title = f"Histogram of {x}"
+    defaultSetting(n,title,x,)
+    return fig
+
+def seaborn_dist(data,x="CGPA"):
+    fig = define_size()
+    n = sns.distplot(data[[x]])
+    title = f"Distribution of {x}"
+    defaultSetting(n,title,x,)
+    return fig
+
+
+
+def seaborn_jointplot(data,x,y, kind="reg"):
+    #fig = define_size()
+    fig = sns.jointplot(x=x,y=y,data=data,kind=kind,fill=True,cmap="mako")
+    # plt.title('CGPA vs GRE score')
+    return fig
+
+
+def  seaborn_barplot(data,x='Research',y='GRE Score'):
+    
+    fig = plt.figure(figsize=(10, 10))
+    sns.barplot(x =x,y=y,data =data)
+    return fig
+
+def defaultSetting(n,title,x,):
+    n.set_title(title, fontsize=20, pad=30, fontdict={"weight": "bold"})
+    n.set_xlabel(x, fontsize=16)
+    n.set_ylabel("Count", fontsize=18)
+ 
+def define_size():
+     fig = plt.figure(figsize=(10, 10)) 
+     return fig  
 def app():
     df = load_data()
-    defaultProject(df)
+    st.markdown("<h2 style='text-align: center; color: green;'>Exploratory Data Analysis</h2>", unsafe_allow_html=True)
+    st.header("",divider="blue")
+    distribution(df)
+    correlation(df)
     
 
 @st.cache_data
@@ -18,38 +119,198 @@ def load_data():
     return data
 
 
-def defaultProject(data):
-    
-    st.markdown("<h2 style='text-align: center; color: green;'>Exploratory Data Analysis</h2>", unsafe_allow_html=True)
-    st.header("",divider="blue")
+def distribution(data):
+
     st.write("""Explorer different attributes 
              from the dataset with those defaults plots """)
     st.markdown("""___""")
-    column1,column2 = st.columns(2,gap="large")
+    with st.expander("Data Distribution and Detection for Outliers",expanded=True):
+        column1,column2 = st.columns(2,gap="large")
+        with column1:
+            st.header("Histogram")
+            selected_column = st.selectbox(
+                "Select any attribute",
+                data.columns[1:],
+                index=len(data.columns[1:])-1,
+                key = "hist-dis"
+            )
+            fig = seaborn_hist(data,selected_column)
+            st.pyplot(fig)
+        with column2:
+            st.header("Distribution Plot")
+            selected_column = st.selectbox(
+                "Select any attribute",
+                data.columns[1:],
+                index=len(data.columns[1:])-1,
+                key="dist-dist"
+            )
+            fig = seaborn_dist(data,selected_column)
+            st.pyplot(fig)
+        with column1:
+            st.header("Box Plot")
+            selected_column = st.multiselect(
+                "Select any attribute",
+                data.columns[1:],
+                default=data.columns[-1],
+                key="violin-dist"
+            )
+            
+            fig = plotly_boxplot(data,selected_column)
+            st.plotly_chart(fig,use_container_width=True)
+        with column2:
+            st.header("Pairwise Plot")
+            column_data, column_hue = st.columns([.7,.3])
+            with column_data:
+                selected_column = st.multiselect(
+                    "Select any attribute",
+                    data.columns[1:],
+                    default=[data.columns[-1],data.columns[1]],
+                    key="pairwise-dist"
+                )
+            with column_hue:
+                selected_hue = st.selectbox(
+                    "Select Hue",
+                    [None]+selected_column,
+                    key="hue-dist"
+                )
+            fig = seaborn_pairwise(data,selected_column,selected_hue)
+            st.pyplot(fig)
 
 
-  
-    
-    with column1:
-        st.title("histogram")
-        st.write("file one check o")
-        # hist = sns.histplot(data=data, x="CGPA")
-        fig = px.histogram(data, x="CGPA")
+
+
+
+
+
+
+def correlation(data):
+    st.write("""Explorer different attributes 
+             from the dataset with those defaults plots """)
+    st.markdown("""___""")
+    with st.expander("Data Distribution and Detection for Outliers",expanded=False):
+        #column1,column2 = st.columns(2,gap="large")
+        #with column1:
+        st.header("Scatter Plot")
+        column_x, column_y,column_color = st.columns([.4,.3,.3])
+        
+        with column_x:
+            selected_column = st.selectbox(
+                "Select X attribute",
+                data.columns[1:],
+                key="x-corr"
+            )
+        with column_y:
+            selected_target = st.selectbox(
+                "Select Target",
+                data.columns[1:],
+                index=len(data.columns[1:])-1,
+                key="target-corr"
+            )
+        with column_color:
+            selected_color = st.selectbox(
+                "Select color attribute",
+                data.columns[1:],
+                index=len(data.columns[1:])-1,
+                key="color-corr"
+            ) 
+
+
+        
+
+
+        fig = plotly_scatter(data,selected_column,selected_target,selected_color)
         st.plotly_chart(fig,use_container_width=True)
-    with column2:
-        st.header("Heatmap")
-        st.write("file one check o")
-        print(data[["CGPA"]])
-        heat = sns.pairplot(data[["CGPA"]])
-        st.pyplot(heat)
+        st.markdown("""___""")
         
         
-    with column1:
-        st.title("Scatter")
-        st.write("file one check o")
-        scatter = px.scatter(data,x="CGPA",y="Chance of Admit ",color="Chance of Admit ")
-        st.plotly_chart(scatter,use_container_width=True)
-    st.title("Scatter")
-    st.write("file one check o")
-    scatter = px.scatter(data,x="CGPA",y="Chance of Admit ",color="Chance of Admit ")
-    st.plotly_chart(scatter,use_container_width=True)
+        column_x, column_y,column_color = st.columns([.4,.3,.3])
+        with column_x:
+            selected_column = st.selectbox(
+                "Select X attribute",
+                data.columns[1:],
+                key="x-joint"
+            )
+        with column_y:
+            selected_target = st.selectbox(
+                "Select Target",
+                data.columns[1:],
+                index=len(data.columns[1:])-1,
+                key="target-joint"
+            )
+        with column_color:
+            selected_type = st.selectbox(
+                "Select color attribute",
+                ["reg"],
+                
+                key="color-joint"
+            ) 
+        # fig = seaborn_jointplot(data,selected_column,selected_target,selected_type)
+        
+        # st.pyplot(fig)
+        column1, column2 = st.columns(2)
+        with column1:
+            selected_column = st.multiselect(
+                "Select Attribute",
+                data.columns[1:],
+                default=[data.columns[-1],data.columns[1]],
+                key="heat-corr"
+                )
+
+            fig = seaborn_heatmap(data, selected_column)
+            st.pyplot(fig)
+        # with column2:
+            #seaborn_heatmap()
+            # fig = seaborn_pairwise(data,selected_column,selected_hue)
+            # st.pyplot(fig)
+        # with column1:
+        #     st.header("Correlation")
+        #     selected_column = st.selectbox(
+        #         "Select any attribute",
+        #         data.columns[1:],
+        #         index=len(data.columns[1:])-1,
+        #         key = "hist"
+        #     )
+        #     fig = seaborn_hist(data,selected_column)
+        #     st.pyplot(fig)
+        # with column2:
+        #     st.header("Distribution Plot")
+        #     selected_column = st.selectbox(
+        #         "Select any attribute",
+        #         data.columns[1:],
+        #         index=len(data.columns[1:])-1,
+        #         key="dist"
+        #     )
+        #     fig = seaborn_dist(data,selected_column)
+        #     st.pyplot(fig)
+        # with column1:
+        #     st.header("Box Plot")
+        #     selected_column = st.multiselect(
+        #         "Select any attribute",
+        #         data.columns[1:],
+        #         default=data.columns[-1],
+        #         key="violin"
+        #     )
+            
+        #     fig = plotly_boxplot(data,selected_column)
+        #     st.plotly_chart(fig,use_container_width=True)
+        
+            
+            
+            
+    # with column1:
+    #     st.title("Scatter")
+    #     st.write("file one check o")
+    #     scatter = px.scatter(data,x="CGPA",y="Chance of Admit ",color="Chance of Admit ")
+    #     st.plotly_chart(scatter,use_container_width=True)
+    # st.title("Scatter")
+    # st.write("file one check o")
+    # scatter = px.scatter(data,x="CGPA",y="Chance of Admit ",color="Chance of Admit ")
+    # st.plotly_chart(scatter,use_container_width=True)
+
+
+
+
+# def 
+# sb.jointplot(x = 'CGPA',y ='GRE Score',data = admission_predict,kind = 'kde',fill = True,cmap = 'mako')
+# plt.title('CGPA vs GRE score')
+# plt.show()
