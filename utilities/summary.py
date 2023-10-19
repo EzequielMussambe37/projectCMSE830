@@ -1,6 +1,6 @@
 import streamlit as st
 from utilities import dataMani 
-from st_aggrid import AgGrid
+
 
 
 
@@ -43,7 +43,7 @@ def app():
     st.markdown("""
                 The first phase of the project is based on initial exploratory data analysis (EDA), including plotting pair plots to visualize the relationships between attributes, to understand the data distribution and correlations, and to identify any outlier  that could affect the project's overall objectives.
                 The web application is user-friendly, it allows users to interact with various features of the dataset and visualize the major attributes that  affect admission chances.
-                **<span style='color:blue'>Below is the Overview of the Data. You can explore and manipulate it (dynamic table)*</span>*
+                **<span style='color:blue'>Below is the Overview of the Data.</span>**
                 """,unsafe_allow_html=True)
 
     st.caption('**Table 1.** DataFrame.')
