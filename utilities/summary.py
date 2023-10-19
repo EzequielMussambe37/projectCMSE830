@@ -45,7 +45,32 @@ def app():
                 The web application is user-friendly, it allows users to interact with various features of the dataset and visualize the major attributes that  affect admission chances.
                 **<span style='color:blue'>Below is the Overview of the Data.</span>**
                 """,unsafe_allow_html=True)
+    st.header("Column name and data types")
+    st.markdown("""
+                
+        1.	Serial no (or Id)
 
+        2.	GRE Scores (out of 340)
+
+        3.	TOEFL Scores (out of 120)
+
+        4.	University Rating (out of 5)
+
+        5.	Statement of Purpose and Letter of Recommendation Strength (out of 5)
+
+        6.	Letter of Recommendation
+
+        7.	Undergraduate GPA (out of 10)
+
+        8.	Research Experience (either 0 or 1)
+
+        9.	Chance of Admit (ranging from 0 to 1)
+                """)
+    st.write("Data Types:", data.dtypes)
+    # st.markdown("""
+    #     <span>{data.dtypes}</span>
+    #     """,unsafe_allow_html=True)
+    
     st.caption('**Table 1.** DataFrame.')
     st.dataframe(data)
     # MIN_HEIGHT = 50
