@@ -2,12 +2,12 @@
 from streamlit_option_menu import option_menu
 
 
-def styleSettings():
+def menuSettings():
     
     selected = option_menu(
                 menu_title = None,
-                options=["Overview","EDA", "Dynamic EDA","Regression Analysis"],
-                icons=["house","📊","📉","💻"],
+                options=["Overview","EDA","Regression Analysis"],
+                icons=["house","📊","💻"],
                 menu_icon = None,
                 default_index=0,
                 #orientation="horizontal",

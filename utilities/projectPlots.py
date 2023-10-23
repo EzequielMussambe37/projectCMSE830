@@ -1,5 +1,5 @@
 import streamlit as st
-from utilities import dataMani , plots
+from utilities import read_data 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
@@ -89,9 +89,7 @@ def seaborn_dist(data,x="CGPA"):
 
 
 def seaborn_jointplot(data,x,y, kind="reg"):
-    #fig = define_size()
     fig = sns.jointplot(x=x,y=y,data=data,kind=kind,fill=True,cmap="mako")
-    # plt.title('CGPA vs GRE score')
     return fig
 
 
@@ -123,7 +121,7 @@ def app():
 
 @st.cache_data
 def load_data():
-    data = dataMani.read_file("csv",",", "chances.csv")
+    data = read_data.read_file("csv",",", "./utilities/chances.csv")
     return data
 
 
@@ -237,11 +235,6 @@ def distribution(data):
             )
         fig = seaborn_pairwise(data,selected_column,selected_hue)
         st.pyplot(fig)
-
-
-
-
-
 
 
 

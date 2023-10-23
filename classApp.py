@@ -5,12 +5,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt 
 import numpy as np
 import math
-from utilities import configFile,styles
+from utilities import configFile,menu
 
-# st.set_page_config(layout = "wide")
-simple_plot_List = ["pairplot", "histgram","barplot","violinplot","boxplot"]
-
-advance_plot_list = []
 class mainApp:
 
     def __init__(self):
@@ -21,7 +17,7 @@ class mainApp:
     def run():
         configFile.hideConfigOption()
         with st.sidebar:
-            selected = styles.styleSettings() 
+            selected = menu.menuSettings() 
         try:
             configFile.options_menu()[selected].app()
         except:

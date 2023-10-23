@@ -1,14 +1,24 @@
-# Data Science Project:
- * **Predictive Model for Graduate Admission Based on Quantitative Factors (CMSE830)**
-### <span style="color:blue">File and data availbles</span>
-* chances.csv - this is the dataset..
-* classApp.py - the main python file where all the logic for the app can be found
-* Regras.txt - file for any information on the data and on the library or any tips..
+# Data Science Project
+___
+## Graduate Admission Prediction
+### <span style="color:blue">File:</span>
+
+* projectPlots.py - All the project plots methods
+* home.py - Main home file on runtime
+* EDA.py - Visualization and Interaction with plots and dataset
+* configFile.py - Main project configuration
+* read_data.py - Load dataset and cache it
+* menu.py - Nav main configuration
+* classApp.py - The main  Class Application
+* chances.csv - Dataset file.
 ---
-* ### Packages Installed
-    * matplotlib==3.7.1 <br>
-    * numpy==1.24.3 <br>
-    * pandas==1.5.3 <br>
-    * seaborn==0.13.0 <br>
-    * streamlit==1.26.0 <br>
-    * streamlit_option_menu==0.3.6 <br>
+### <span style="color:blue"> Packages Installed </span>
+    matplotlib==3.7.1
+    numpy==1.24.3
+    pandas==1.5.3
+    plotly==5.9.0
+    seaborn==0.13.0
+    streamlit==1.26.0
+    streamlit_option_menu==0.3.6
+    streamlit-aggrid==0.3.4
+

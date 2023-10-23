@@ -1,6 +1,6 @@
 import streamlit as st
 
-from utilities import EDA,projectPlots,summary
+from utilities import EDA,projectPlots,home
 
 
 def hideConfigOption():
@@ -9,8 +9,6 @@ def hideConfigOption():
         page_title = "Main",
         layout="centered"
     )
-    
-    
     hide_style= """
     <style>
     #MainMenu {visibility:hidden}
@@ -25,8 +23,7 @@ def hideConfigOption():
     st.markdown(hide_style, unsafe_allow_html=True)
     
     
-    
 def options_menu():
     
-    return  {"Overview":summary,"Dynamic EDA":EDA,"ML":"","EDA":projectPlots}
+    return  {"Overview":home,"Dynamic EDA":EDA,"ML":"","EDA":projectPlots}
 

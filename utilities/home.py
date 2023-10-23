@@ -1,16 +1,18 @@
 import streamlit as st
-from utilities import dataMani 
+from utilities import read_data 
 
 
 
 
 def app():
     
-    data = dataMani.read_file("csv",",", "chances.csv")
+    data = read_data.read_file("csv",",", "./utilities/chances.csv")
     column5, column6 = st.columns([.7,.3])
     ######################################################
     st.markdown('*Data Science Project CMSE 830*')
     st.title('Graduate Admission Prediction')
+    st.image("https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&q=80&w=1171&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+             caption=f'blue and white academic hat (Joshua Hoehne)')
     
     st.markdown('''
     **Ezequiel Mussambe**
