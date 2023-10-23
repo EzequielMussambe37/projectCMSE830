@@ -307,6 +307,8 @@ def correlation(data):
         
         # st.pyplot(fig)
         column1, column2 = st.columns(2)
+        
+        
         #with column1:
         selected_column = st.multiselect(
             "Select Attribute",
