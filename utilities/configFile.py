@@ -6,7 +6,7 @@ from utilities import EDA,home
 def hideConfigOption():
 
     st.set_page_config(
-        page_title = "Main",
+        page_title = "Data Science",
         layout="centered"
     )
     hide_style= """
