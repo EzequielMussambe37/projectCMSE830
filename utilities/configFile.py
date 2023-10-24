@@ -18,6 +18,9 @@ def hideConfigOption():
                     padding-top: 2rem;
                     padding-bottom: 0rem;
                 }
+    .viewerBadge_link__qRIco {
+        visibility:hidden;
+    }
     </style>
     """
     st.markdown(hide_style, unsafe_allow_html=True)
