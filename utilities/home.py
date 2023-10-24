@@ -1,13 +1,13 @@
 import streamlit as st
 from utilities import read_data 
 
-
+import pandas as pd
 
 
 def app():
     
     data = read_data.read_file("csv",",", "./utilities/chances.csv")
-    column5, column6 = st.columns([.7,.3])
+    #column5, column6 = st.columns([.7,.3])
     ######################################################
     st.markdown('*Data Science Project CMSE 830*')
     st.title('Graduate Admission Prediction')
@@ -22,7 +22,7 @@ def app():
     ''')
     
     
-    st.header('Introduction')
+    st.subheader('Introduction')
     
     st.markdown("""
                 For many undergraduate students, the decision to pursue postgraduate studies is fraught with uncertainties. 
@@ -32,7 +32,7 @@ def app():
                 )
     
 
-    st.header('Objective')
+    st.subheader('Objective')
     st.markdown("""
                 Objectives
     The fundamental objective of this project is to develop a predictive model for graduate admission based on quantitative factors, measure the influence of different components of an applicant's portfolio on admission, 
@@ -41,13 +41,13 @@ def app():
 
 
 
-    st.header("First Phase")
+    st.subheader("First Phase")
     st.markdown("""
                 The first phase of the project is based on initial exploratory data analysis (EDA), including plotting pair plots to visualize the relationships between attributes, to understand the data distribution and correlations, and to identify any outlier  that could affect the project's overall objectives.
                 The web application is user-friendly, it allows users to interact with various features of the dataset and visualize the major attributes that  affect admission chances.
                 **<span style='color:blue'>Below is the Overview of the Data.</span>**
                 """,unsafe_allow_html=True)
-    st.header("Column name and data types")
+    st.subheader("Column name and data types")
     st.markdown("""
                 
         1.	Serial no (or Id)
@@ -68,21 +68,17 @@ def app():
 
         9.	Chance of Admit (ranging from 0 to 1)
                 """)
-    st.write("Data Types:", data.dtypes)
-    # st.markdown("""
-    #     <span>{data.dtypes}</span>
-    #     """,unsafe_allow_html=True)
     
+    df = pd.DataFrame(data.dtypes)
+    st.dataframe(df)
+
     st.caption('**Table 1.** DataFrame.')
     st.dataframe(data)
-    # MIN_HEIGHT = 50
-    # MAX_HEIGHT = 500
-    # ROW_HEIGHT = 60
-    # AgGrid(data,fit_columns_on_grid_load=True,height=min(MIN_HEIGHT + len(data) * ROW_HEIGHT, MAX_HEIGHT))
-        
-    # with column1:
+    
+    st.markdown("""___""")
     st.markdown("<h4 style='text-align:center;'>Statistics Summary</h4>",unsafe_allow_html=True)
-    st.header("",divider="green")
+    #st.header("",divider="green")
+    
     column1,column2 = st.columns(2)
     with column1:
         st.markdown("""<ul>
@@ -99,16 +95,17 @@ def app():
         unsafe_allow_html=True)  
     st.caption('**Table 2.** Summary of the Data.')
     st.dataframe(data.describe())
-    #AgGrid(data.describe())
+    
+    st.markdown("""___""")
     st.markdown("<h4 style='text-align:center;'>Correlation</h4>",unsafe_allow_html=True)
-    st.header("",divider="green")
+
     st.write("Dataset  overall correlation")
     st.caption('**Table 3.** Correlation between attributes.')
     st.dataframe(data.corr())
     #AgGrid(data.corr(),fit_columns_on_grid_load=True,height=min(MIN_HEIGHT + len(data) * ROW_HEIGHT, MAX_HEIGHT))
     st.markdown("""___""")
     
-    st.header("Acknowledgements")
+    st.subheader("Acknowledgements")
     st.markdown("""
                 <p style='background-color:rgb(255, 202, 0,0.3);'> "This dataset is inspired by the UCLA Graduate Dataset. The test scores and GPA are in the older format. 
                 The dataset is owned by Mohan S Acharya" (Acharya, M.S.).

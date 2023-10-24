@@ -1,6 +1,6 @@
 import streamlit as st
 
-from utilities import EDA,projectPlots,home
+from utilities import EDA,home
 
 
 def hideConfigOption():
@@ -25,5 +25,5 @@ def hideConfigOption():
     
 def options_menu():
     
-    return  {"Overview":home,"Dynamic EDA":EDA,"ML":"","EDA":projectPlots}
+    return  {"Overview":home,"EDA":EDA,"ML":""}
 
