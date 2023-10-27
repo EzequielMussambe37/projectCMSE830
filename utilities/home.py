@@ -13,7 +13,7 @@ def app():
     st.markdown('''
     **Ezequiel Mussambe**
 
-    *Graduate Student at Michigan State University, https://msu.edu/*
+    *Graduate Student at Michigan State University, https://portfolio-em.streamlit.app*
 
     ''')
     st.title('Graduate Admission Prediction')
