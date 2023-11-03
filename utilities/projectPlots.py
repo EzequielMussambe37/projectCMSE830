@@ -1,16 +1,16 @@
 
-from utilities import read_data 
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
 
 #PLOTLY PLOTS
 def plotly_scatter(data,x,y,color):
+    title ="{} as function of {}".format(y,x)
+    
     fig = px.scatter(data,x=x,y=y,color=color)
-
+    fig.update_layout(title_text=title, title_x=0.2)
     return fig
 
 def plotly_boxplot(data,column):
@@ -87,7 +87,11 @@ def seaborn_jointplot(data,x,y,hue=None,kind="kde"):
     # fig = sns.jointplot(data=data,x=x,y=y,hue=hue,kind=kind)
     return fig
 
-
+def scatter_plot(data,x,y):
+    fig = plt.figure(figsize=(10, 10))
+    sns.scatterplot(data,x,y)
+    
+    return fig
 def  seaborn_barplot(data,x='Research',y='GRE Score'):
     
     fig = plt.figure(figsize=(10, 10))

@@ -7,7 +7,7 @@ def menuSettings():
     selected = option_menu(
                 menu_title = None,
                 options=["Overview","EDA","Conclusion","Regression Analysis"],
-                icons=["house","📊","💻"],
+                icons=["house","📊","💻"," "],
                 menu_icon = None,
                 default_index=0,
                 #orientation="horizontal",
