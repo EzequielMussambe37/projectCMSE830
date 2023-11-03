@@ -81,8 +81,10 @@ def seaborn_dist(data,x="CGPA"):
     return fig
 
 
-def seaborn_jointplot(data,x,y, kind="reg"):
-    fig = sns.jointplot(x=x,y=y,data=data,kind=kind,fill=True,cmap="mako")
+def seaborn_jointplot(data,x,y,hue=None,kind="kde"):
+    # fig = plt.figure(figsize=(10, 10))
+    fig = sns.jointplot(data=data,x=x,y=y,hue=hue,kind=kind)
+    # fig = sns.jointplot(data=data,x=x,y=y,hue=hue,kind=kind)
     return fig
 
 

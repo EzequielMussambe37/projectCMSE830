@@ -12,21 +12,38 @@ def app():
     df = load_data()
     st.header("",divider="grey")
     st.markdown("<h2 style='text-align: center; color: green;'>Exploratory Data Analysis</h2>", unsafe_allow_html=True)
-    
+
     st.markdown("""
                 Data visualization is a powerful tool, it allows us to effectively identify patterns, trends, outliers or even data anomalies.
                 While statistics numbers provide valuable insights, there is visual language that can communicate complex data distribution in a way that is both intuitive and powerful.
                 """)
+   
     
+    st.markdown("""
+               #### There are two Panels:
+                * **:blue[Data Distribution Panel]**
+                * **:blue[Data Relationship Panel]**
+                """)
+
     #st.header("",divider="blue")
     distribution(df)
+    st.header("",divider="green")
     correlation(df)
 
 #Distribution type of plots
 def distribution(data):
     with st.expander("Data Distribution Panel",expanded=True):
+        st.subheader(":blue[OverView]")
+        st.markdown("""
+                * The target attribute for this project is  called "Chance of Admit".
+                The distribution of the GRE Score, TOEFL SCORE, CGPA,SOP resemble a normal distribution.
+                It is also important to highlight that the attributes are all numeric.
+                
+                """)
         
-        st.header("Histogram and Distribution Plots")
+        st.markdown("___")
+        
+        st.header(":blue[Histogram and Distribution Plots]")
         st.markdown("""
                     * Histograms provide a clear overview of data point frequencies across various ranges,
                     while univariate density distribution plots enable a comprehensive view of individual variable distributions within the dataset.
@@ -59,8 +76,9 @@ def distribution(data):
             fig = pp.seaborn_dist(data,selected_column)
             st.pyplot(fig)
             descriptionHist(selected_column)
-        st.header("",divider="green")
-        st.header("Box and Violin Plots")
+        # st.header("",divider="green")
+        st.markdown("___")
+        st.header(":blue[Box and Violin Plots]")
         st.markdown("""
                     * Box plots efficiently emphasize dataset characteristics like quartiles, median, and outliers.
                     Similarly, violin plots, a family of distribution plots, offer a powerful means to visualize data distribution shapes. 
@@ -103,8 +121,8 @@ def distribution(data):
             fig = pp.seaborn_violinplot(data,selected_column,selected_kind)
             st.pyplot(fig)
             descriptionBoxplot(selected_column)
-
-        st.header("Pairwise Plot")
+        st.markdown("___")
+        st.header(":blue[Pairwise Plot]")
         st.markdown("""
                     * In short: Allows to visualize both the distribution of single variable and the relationship between two variables..
                     """)
@@ -133,13 +151,21 @@ def distribution(data):
 def correlation(data):
 
     with st.expander("Data Relationship Panel",expanded=False):
-        
+        st.subheader(":blue[OverView]")
         st.markdown("""
-                The objective of this exploratory data analysis (EDA) section is to discern the key 
+                    
+                * The :blue[GRE Score, CGPA,TOEFL Score] are the main independent candidate that pontentially can explain the changes in the target variable (:blue[Chance of Admit]).
+                Observe that there is a positive correlation between the target variable ( :blue[Chance of Admit] ), and independent variables
+                
+                """)
+        st.markdown("""
+                * The objective of this exploratory data analysis (EDA) section is to discern the key 
                 factors which can impact the target variable, which is denoted as "Chance of Admit." 
                 The EDA process entails a comprehensive examination of various attributes within the dataset in order to identify and assess their potential influence on the target variable. 
                 """)
-        st.header("Scatter Plot")
+        
+        st.markdown("___")
+        st.header(":blue[Scatter Plot]")
         column_x, column_y,column_color = st.columns([.4,.3,.3])
         
         with column_x:
@@ -167,8 +193,8 @@ def correlation(data):
         st.plotly_chart(fig,use_container_width=True)
         descriptionCorr(selected_column,selected_target)
         st.markdown("""___""")
-
-        column_x, column_y,column_color = st.columns([.4,.3,.3])
+        st.header(":blue[Joint Plot]")
+        column_x, column_y,column_hue,column_color = st.columns([.3,.3,.2,.2])
         with column_x:
             selected_column = st.selectbox(
                 "Select X attribute",
@@ -182,14 +208,23 @@ def correlation(data):
                 index=len(data.columns[1:])-1,
                 key="target-joint"
             )
+        with column_hue:
+            selected_hue = st.selectbox(
+                "Select hue",
+                [None] + list(data.columns[1:]),
+                key="hue-joint"
+            ) 
         with column_color:
             selected_type = st.selectbox(
-                "Select color attribute",
-                ["reg"],
-
-                key="color-joint"
+                "Select kind",
+                ["reg","scatter","kde","hist","hex"],
+                key="shape-joint"
             ) 
+        fig = pp.seaborn_jointplot(data,selected_column,selected_target,selected_hue,selected_type)
+        st.pyplot(fig)
+        st.markdown("___")
         column1, column2 = st.columns(2)
+        st.header(":blue[Correlation Matrix( HeatMap)]")
         selected_column = st.multiselect(
             "Select Attribute",
             data.columns[1:],
