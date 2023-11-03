@@ -2,6 +2,8 @@
 # Data Science Project
 ___
 ## Graduate Admission Prediction
+## Introduction
+For many undergraduate students, the decision to pursue postgraduate studies is fraught with uncertainties. The dilemma often pivots around continuing education immediately after their undergraduate degree or taking a break from academia. With the decision to persue a high education araise the question "Is my academic portfolio competitive for admission to a reputable universities or highly ranked institutions?.
 ### <span style="color:blue">File:</span>
 
 * projectPlots.py - All the project plots methods
