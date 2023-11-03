@@ -1,3 +1,4 @@
+
 # Data Science Project
 ___
 ## Graduate Admission Prediction
@@ -21,4 +22,5 @@ ___
     streamlit==1.26.0
     streamlit_option_menu==0.3.6
     streamlit-aggrid==0.3.4
+
 
