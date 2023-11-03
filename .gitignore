@@ -2,5 +2,7 @@
 # Python Conf
 __pycache__
 
+.DS_Store
+
 #IDE SETTINGS
 .vscode
