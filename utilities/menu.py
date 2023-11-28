@@ -6,11 +6,11 @@ def menuSettings():
     
     selected = option_menu(
                 menu_title = None,
-                options=["Overview","EDA","Regression Analysis"],
-                icons=["house","📊","💻"],
+                options=["Overview","Portofolio","EDA","Regression Analysis"],
+                icons=["house","📊","💻"," "],
                 menu_icon = None,
                 default_index=0,
-                #orientation="horizontal",
+                orientation="horizontal",
                 styles= {
                     "container":{"padding":"4!import","background-color":"lightgrey"},
                                     "icon":{"color":'black',"font-size":'23px'},

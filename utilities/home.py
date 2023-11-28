@@ -9,11 +9,13 @@ def app():
     data = read_data.read_file("csv",",", "./utilities/chances.csv")
     #column5, column6 = st.columns([.7,.3])
     ######################################################
-    st.markdown('*Data Science Project CMSE 830*')
+    #st.markdown('*Data Science*')
+      #* [Pleae Check out my portofolio](https://portfolio-em.streamlit.app) 
     st.markdown('''
     **Ezequiel Mussambe**
+    * GIS Analyst and GIS Developer
 
-    *Graduate Student at Michigan State University, https://portfolio-em.streamlit.app*
+  
 
     ''')
     st.title('Graduate Admission Prediction')
