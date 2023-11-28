@@ -6,7 +6,11 @@ def menuSettings():
     
     selected = option_menu(
                 menu_title = None,
+<<<<<<< HEAD
                 options=["Overview","Portofolio","EDA","Regression Analysis"],
+=======
+                options=["Overview","EDA","Conclusion","Regression Analysis"],
+>>>>>>> 68edb3d71d4ec23bdeae3ec1ed746fc660444114
                 icons=["house","📊","💻"," "],
                 menu_icon = None,
                 default_index=0,

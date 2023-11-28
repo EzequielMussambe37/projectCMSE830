@@ -1,6 +1,6 @@
 import streamlit as st
 
-from utilities import EDA,home
+from utilities import EDA,home,conclusion,regression
 
 
 def hideConfigOption():
@@ -28,5 +28,5 @@ def hideConfigOption():
     
 def options_menu():
     
-    return  {"Overview":home,"EDA":EDA,"ML":""}
+    return  {"Overview":home,"EDA":EDA,"Regression Analysis":regression,"Conclusion":conclusion}
 

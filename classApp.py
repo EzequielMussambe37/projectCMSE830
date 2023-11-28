@@ -1,10 +1,5 @@
 
 import streamlit as st
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt 
-import numpy as np
-import math
 from utilities import configFile,menu
 import streamlit.components.v1 as components
 
