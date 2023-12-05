@@ -28,5 +28,5 @@ def hideConfigOption():
     
 def options_menu():
     
-    return  {"Overview":home,"EDA":EDA,"Regression Analysis":regression,"Conclusion":conclusion}
+    return  {"Overview":home,"EDA":EDA,"Regression":regression,"Conclusion":conclusion}
 

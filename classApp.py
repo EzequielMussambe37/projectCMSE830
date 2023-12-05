@@ -7,12 +7,14 @@ class mainApp:
 
     def __init__(self):
         self.apps = []
+        st.session_state.options = False
 
     def ret(self):
         return self.options_menu
     def run():
         configFile.hideConfigOption()
         #with st.sidebar:
+        #with st.topbar:
         selected = menu.menuSettings() 
         try:
             if selected == "Portofolio":
@@ -27,7 +29,7 @@ class mainApp:
                 #components.iframe("""<iframe src=https://portfolio-em.streamlit.app/?embed=true height="450" style="width:100%;border:none;></iframe>""")
                 # frameBorder="0"
                 # components.iframe(f"{ur}",width=900,height=900)
-            else:   
+            else: 
                 configFile.options_menu()[selected].app()
         except:
             pass

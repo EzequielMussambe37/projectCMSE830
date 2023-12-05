@@ -43,12 +43,12 @@ def distribution(data):
         
         st.markdown("___")
         
-        st.header(":blue[Histogram and Distribution Plots]")
-        st.markdown("""
-                    * Histograms provide a clear overview of data point frequencies across various ranges,
-                    while univariate density distribution plots enable a comprehensive view of individual variable distributions within the dataset.
-                    These essential tools empower data professionals to extract valuable insights from diverse data sources.
-                    """)
+        # st.header(":blue[Histogram and Distribution Plots]")
+        # st.markdown("""
+        #             * Histograms provide a clear overview of data point frequencies across various ranges,
+        #             while univariate density distribution plots enable a comprehensive view of individual variable distributions within the dataset.
+        #             These essential tools empower data professionals to extract valuable insights from diverse data sources.
+        #             """)
         st.markdown('''
         *The default attributes were selected based on the relation with the target*
         ''')
@@ -78,12 +78,12 @@ def distribution(data):
             descriptionHist(selected_column)
         # st.header("",divider="green")
         st.markdown("___")
-        st.header(":blue[Box and Violin Plots]")
-        st.markdown("""
-                    * Box plots efficiently emphasize dataset characteristics like quartiles, median, and outliers.
-                    Similarly, violin plots, a family of distribution plots, offer a powerful means to visualize data distribution shapes. 
-                    This facilitates the clear representation of selected values' distributions, enabling insightful data exploration.
-                    """)
+        # st.header(":blue[Box and Violin Plots]")
+        # st.markdown("""
+        #             * Box plots efficiently emphasize dataset characteristics like quartiles, median, and outliers.
+        #             Similarly, violin plots, a family of distribution plots, offer a powerful means to visualize data distribution shapes. 
+        #             This facilitates the clear representation of selected values' distributions, enabling insightful data exploration.
+        #             """)
         st.markdown('''
         *The default attributes were selected based on the relation with the target*
         ''')
@@ -122,10 +122,10 @@ def distribution(data):
             st.pyplot(fig)
             descriptionBoxplot(selected_column)
         st.markdown("___")
-        st.header(":blue[Pairwise Plot]")
-        st.markdown("""
-                    * In short: Allows to visualize both the distribution of single variable and the relationship between two variables..
-                    """)
+        # st.header(":blue[Pairwise Plot]")
+        # st.markdown("""
+        #             * In short: Allows to visualize both the distribution of single variable and the relationship between two variables..
+        #             """)
         st.markdown('''
         *The default attributes were selected based on the relation with the target*
         ''')
@@ -165,7 +165,7 @@ def correlation(data):
                 """)
         
         st.markdown("___")
-        st.header(":blue[Scatter Plot]")
+        # st.header(":blue[Scatter Plot]")
         column_x, column_y,column_color = st.columns([.4,.3,.3])
         
         with column_x:

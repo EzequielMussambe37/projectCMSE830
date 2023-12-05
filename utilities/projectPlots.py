@@ -6,6 +6,22 @@ import plotly.graph_objects as go
 
 
 #PLOTLY PLOTS
+def plot_regression(y_test,y_predict):
+    
+    #x = np.linspace(-1,1)
+    fig = px.scatter(
+        x=y_test,
+        y=y_predict,
+        title="actual vs predicted")
+    # fig.add_trace(
+    #     go.Scatter(
+    #         x=x,y=y,
+    #         mode="lines",
+    #         name="PCA2"
+    #     )
+    # )
+    return fig
+
 def plotly_scatter(data,x,y,color):
     title ="{} as function of {}".format(y,x)
     
@@ -38,6 +54,14 @@ def plotly_bar(data, x="CGPA",orientation="h"):
 
 
 # SEABORN PLOTS
+def seaborn_plot_residual(y_test,y_predict):
+    fig = plt.figure(figsize=(20,5))
+    #fig = define_size()
+    ax = fig.add_subplot(122)
+    sns.distplot((y_test - y_predict),ax=ax,color='b')
+    ax.axvline((y_test - y_predict).mean(),color='r',linestyle='--')
+    ax.set_title('Check for Residual normality & mean: \n Residual error')
+    return fig
 def seaborn_pairwise(data,columns,hue=None):
     fig = sns.pairplot(data[columns], hue=hue)
     
@@ -87,9 +111,9 @@ def seaborn_jointplot(data,x,y,hue=None,kind="kde"):
     # fig = sns.jointplot(data=data,x=x,y=y,hue=hue,kind=kind)
     return fig
 
-def scatter_plot(data,x,y):
+def scatter_plot(x,y):
     fig = plt.figure(figsize=(10, 10))
-    sns.scatterplot(data,x,y)
+    sns.scatterplot(x,y)
     
     return fig
 def  seaborn_barplot(data,x='Research',y='GRE Score'):
