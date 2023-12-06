@@ -78,13 +78,13 @@ def app():
 
         5.	Statement of Purpose and Letter of Recommendation Strength (out of 5)
 
-        6.	Letter of Recommendation
+        6.	Letter of Recommendation (out of 5)
 
-        7.	Undergraduate GPA (out of 10)
+        7.	Undergraduate GPA (out of 9.92)
 
         8.	Research Experience (either 0 or 1)
 
-        9.	Chance of Admit (ranging from 0 to 1)
+        9.	Chance of Admit (ranging from 0 to 0.97)
                 """)
         df = pd.DataFrame(data.dtypes)
         st.dataframe(df.T)
