@@ -20,11 +20,12 @@ def linear_regression(X,y,train_size=80,random_state = 23):
     return {"model": lin_reg,"X_test":X_test,"y_test":y_test,"X_train":X_train,"y_train":y_train}
 
 def model_evaluation(result):
-    y_predicted = result["model"].predict(result["X_test"])
+    
+    y_predicted = predict_incoming(result["model"],result["X_test"])
     mse = mean_squared_error(y_predicted,result["y_test"])
     mae = mean_absolute_error(y_predicted,result["y_test"])
     r_squared = r2_score(result["y_test"],y_predicted)
-    
+
     return {"mse":mse,"mae":mae,"r_squared":r_squared,"predicted":y_predicted} 
 def construct_regression_table(model,columns):
     
@@ -34,6 +35,20 @@ def construct_regression_table(model,columns):
     
     return {"Parameter":parameter,"Columns":columns,"Coeff_value":w}
 
+def predict_incoming(model,test_value,user=False):
+    # if user:
+    #     if scaler == "Normalize":
+    #         #test_value =normalized_data(test_value)
+    #         y_predicted = model.predict(test_value)
+    #     elif scaler == "Standardize":
+    #         #test_value =standardized_data(test_value)
+    #         st.write("value standardized", test_value)
+    #         y_predicted = model.predict(test_value)
+    #     else:
+    #         y_predicted = model.predict(test_value)
+    # else:
+    y_predicted = model.predict(test_value)
+    return y_predicted
 def standardized_data(data):
     scaler = StandardScaler()
     data = scaler.fit_transform(data)

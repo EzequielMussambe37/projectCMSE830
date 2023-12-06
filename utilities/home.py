@@ -28,7 +28,7 @@ def app():
 
     # ''')
     #st.title('Graduate Admission Prediction Using Regression Model')
-    st.markdown(""" <h2 style="text-align:center;">Graduate Admission Prediction Using Regression Model</h2>""",unsafe_allow_html=True)
+    st.markdown(""" <h2 style="text-align:center;">Graduate Admission Prediction Using Linear Regression Model</h2>""",unsafe_allow_html=True)
     st.image("https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&q=80&w=1171&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
              caption=f'blue and white academic hat (Joshua Hoehne)')
     
@@ -44,23 +44,71 @@ def app():
                 """
                 )
     
-
     st.subheader('Objective')
     st.markdown("""
-    considering the statement above, the fundamental objective is to develop a predictive model for graduate admission based on quantitative factors such as student GPA, test scores, and personal stamenets and recommendation,etc...,   and measure the influence of all those  features of an applicant's portfolio on admission,to help international students
-     to have an idea the chances to get accepted to a university.
-    and discuss the limitations and challenges associated with using predictive models for this purpose.
-                """)
-
-    st.subheader('Important Note')
+   The analysis begins with the hypothesis that chance of admission is significantly influenced by test 
+   scores—specifically GRE, TOEFL, and CGPA. The primary aim is to present international graduate students 
+   with an optimal default result achieved through the linear regression model. 
+   Despite this default outcome, the application maintains flexibility to ensure an excellent user experience.
+   """)
     st.markdown("""
-                The data set lack a few important information, for instance the universities descriptions,university locations and rank specificity.
-                Therefore, the predict model might be limited to the information available in the dataset. Due to this limitation on the dataset available
-                or used to performing this. This program is able to take any extending, complete and massive dataset from the user,
-                in other word users are able to upload their own data to performing any regression analysis on prediction.
-                
-                """)
+                ✍🏻 <p style='background-color:rgb(255, 202, 0,0.3);'> It is crucial to acknowledge and address the inherent limitations and challenges 
+    associated with employing predictive models for this purpose.
+                </p>
+                """,unsafe_allow_html=True)
+    
+    data = read_data.read_file("csv",",", "./utilities/admission.csv")
+    if "data_file" not in st.session_state:
+        st.session_state["data_file"]= data
+    tab1, tab2, tab3,tab4 = st.tabs(["DATA 📝", "COLUMN INFO ℹ️", "STATISTIC SUMMARY 🔢","CORRELATION MATRIX 📈"])
 
+    with tab1:
+        st.write(data)
+
+    with tab2:
+        st.markdown("""
+                
+        1.	Serial no (or Id)
+
+        2.	GRE Scores (out of 340)
+
+        3.	TOEFL Scores (out of 120)
+
+        4.	University Rating (out of 5)
+
+        5.	Statement of Purpose and Letter of Recommendation Strength (out of 5)
+
+        6.	Letter of Recommendation
+
+        7.	Undergraduate GPA (out of 10)
+
+        8.	Research Experience (either 0 or 1)
+
+        9.	Chance of Admit (ranging from 0 to 1)
+                """)
+        df = pd.DataFrame(data.dtypes)
+        st.dataframe(df.T)
+    with tab3:
+        st.dataframe(data.describe())
+        column1,column2 = st.columns(2)
+        with column1:
+            st.markdown(f"""<ul>
+                <li>Number of Recors: {data.shape[0]} ✅</li>
+                <li>Number of Attributes: {data.shape[1]} ✅</li>
+            </ul>""",
+            unsafe_allow_html=True)
+            
+        with column2:
+            if data.isnull().values.any():
+                st.markdown("""<ul>
+                    <li>There is missing value ✅</li>
+                </ul>""",unsafe_allow_html=True)
+            else:
+                st.markdown("""<ul>
+                    <li>There is no missing value ✅</li>
+                </ul>""",unsafe_allow_html=True)
+    with tab4:
+        st.dataframe(data.corr())     
     st.markdown("___")
     # s = ["Load Existed File","Upload a new File"]
     # options= st.radio( 
@@ -89,85 +137,46 @@ def app():
     #         st.write("this is the file", file_data)
     #         data = read_data.read_file("csv",",", "./utilities/chances.csv")
     # else:
-    data = read_data.read_file("csv",",", "./utilities/admission.csv")
-    if "data_file" not in st.session_state:
-        st.session_state["data_file"]= data
+
     
     # st.write(st.session_state.get("options"))
     # st.write("This is the section", st.session_state.checkedOption)
-    st.write(data)
+    
     # st.dataframe(data)
-    st.markdown("___")
+    #st.markdown("___")
     # st.subheader("First Phase")
     # st.markdown("""
     #             The first phase of the project is based on initial exploratory data analysis (EDA), including plotting pair plots to visualize the relationships between attributes, to understand the data distribution and correlations, and to identify any outlier  that could affect the project's overall objectives.
     #             The web application is user-friendly, it allows users to interact with various features of the dataset and visualize the major attributes that  affect admission chances.
     #             **<span style='color:blue'>Below is the Overview of the Data.</span>**
     #             """,unsafe_allow_html=True)
-    st.subheader("Column name and data types")
+    #st.subheader("Column name and data types")
     # st.markdown("""
     #             <ul><
     #             """)
-    st.markdown("""
-                
-        1.	Serial no (or Id)
-
-        2.	GRE Scores (out of 340)
-
-        3.	TOEFL Scores (out of 120)
-
-        4.	University Rating (out of 5)
-
-        5.	Statement of Purpose and Letter of Recommendation Strength (out of 5)
-
-        6.	Letter of Recommendation
-
-        7.	Undergraduate GPA (out of 10)
-
-        8.	Research Experience (either 0 or 1)
-
-        9.	Chance of Admit (ranging from 0 to 1)
-                """)
     
-    df = pd.DataFrame(data.dtypes)
-    st.dataframe(df.T)
-
-    st.caption('**Table 1.** DataFrame.')
-    st.dataframe(data)
     
-    st.markdown("""___""")
-    st.markdown("<h4 style='text-align:center;'>Statistics Summary</h4>",unsafe_allow_html=True)
+    
+
+    # st.caption('**Table 1.** DataFrame.')
+    # st.dataframe(data)
+    
+    # st.markdown("""___""")
+    # st.markdown("<h4 style='text-align:center;'>Statistics Summary</h4>",unsafe_allow_html=True)
     #st.header("",divider="green")
     
-    column1,column2 = st.columns(2)
-    with column1:
-        st.markdown(f"""<ul>
-            <li>Number of Recors: {data.shape[0]} ✅</li>
-            <li>Number of Attributes: {data.shape[1]} ✅</li>
-        </ul>""",
-        unsafe_allow_html=True)
-        
-    with column2:
-        if data.isnull().values.any():
-            st.markdown("""<ul>
-                <li>There is missing value ✅</li>
-            </ul>""",unsafe_allow_html=True)
-        else:
-            st.markdown("""<ul>
-                <li>There is no missing value ✅</li>
-            </ul>""",unsafe_allow_html=True)
-         
-    st.caption('**Table 2.** Summary of the Data.')
-    st.dataframe(data.describe())
     
-    st.markdown("""___""")
-    st.markdown("<h4 style='text-align:center;'>Correlation</h4>",unsafe_allow_html=True)
+    # st.caption('**Table 2.** Summary of the Data.')
+    # st.dataframe(data.describe())
+    
+    # st.markdown("""___""")
+    # st.markdown("<h4 style='text-align:center;'>Correlation</h4>",unsafe_allow_html=True)
 
-    st.write("Dataset  overall correlation")
-    st.caption('**Table 3.** Correlation between attributes.')
-    st.dataframe(data.corr())
+    # st.write("Dataset  overall correlation")
+    # st.caption('**Table 3.** Correlation between attributes.')
+    # st.dataframe(data.corr())
     #AgGrid(data.corr(),fit_columns_on_grid_load=True,height=min(MIN_HEIGHT + len(data) * ROW_HEIGHT, MAX_HEIGHT))
-    st.markdown("""___""")
+   # st.markdown("""___""")
     
     st.subheader("Acknowledgements")
     st.markdown("""

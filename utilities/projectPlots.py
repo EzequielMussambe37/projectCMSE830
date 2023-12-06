@@ -77,7 +77,7 @@ def seaborn_heatmap(data,columns):
     
     fig = define_size()
     if len(columns) > 1:
-        sns.heatmap(data[columns].corr(), annot=True)
+        sns.heatmap(data[columns], annot=True)
     else:
         sns.heatmap(data[columns], annot=True)
         
