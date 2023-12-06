@@ -25,15 +25,9 @@ def app():
                 """) 
     st.caption("Correlation does not imply causation")
     st.markdown("___")
-    # st.markdown("""
-    #             ✍🏻<p style='background-color:rgb(255, 202, 0,0.3);'> Correlation does not imply causation
-    #             </p>
-    #             """,unsafe_allow_html=True)
-    #st.header("",divider="blue")
     tab1, tab2= st.tabs(["DISTRIBUTION PLOT 📊", "CORRELATION PLOT 📈 "])
     with tab1:
         distribution(df)
-    #st.header("",divider="green")
     with tab2:
         correlation(df)
 
@@ -41,19 +35,11 @@ def app():
 def distribution(data):
     
     with st.expander("Data Distribution Panel",expanded=True):
-        # st.subheader(":blue[OverView]")
         st.markdown("""
                 * The project focuses on the "Chance of Admit" as the target attribute. 
                 The GRE Score, TOEFL Score, CGPA, and SOP exhibit a normal distribution. 
                 Notably, all attributes are numeric.
                 """)
-        # st.markdown("___")
-        # st.header(":blue[Histogram and Distribution Plots]")
-        # st.markdown("""
-        #             * Histograms provide a clear overview of data point frequencies across various ranges,
-        #             while univariate density distribution plots enable a comprehensive view of individual variable distributions within the dataset.
-        #             These essential tools empower data professionals to extract valuable insights from diverse data sources.
-        #             """)
         tabs1, tabs2,tabs3= st.tabs(["BAR PLOT/HISTOGRAM", "BOX/VIOLIN PLOT","PAIRWISE PLOT"])
         with tabs1:
             st.markdown('''
@@ -84,14 +70,6 @@ def distribution(data):
                 fig = pp.seaborn_dist(data,selected_column)
                 st.pyplot(fig)
                 descriptionHist(selected_column)
-        # st.header("",divider="green")
-        # st.header(":blue[Box and Violin Plots]")
-        # st.markdown("""
-        #             * Box plots efficiently emphasize dataset characteristics like quartiles, median, and outliers.
-        #             Similarly, violin plots, a family of distribution plots, offer a powerful means to visualize data distribution shapes. 
-        #             This facilitates the clear representation of selected values' distributions, enabling insightful data exploration.
-        #  
-        # """)
         with tabs2:
             st.markdown('''
             *The default attributes were selected based on the relation with the target*
@@ -104,13 +82,12 @@ def distribution(data):
                     default=data.columns[-1],
                     key="box-dist"
                 )
-                
                 fig = pp.plotly_boxplot(data,selected_column)
                 st.plotly_chart(fig,use_container_width=True)
                 descriptionBoxplot(selected_column)
-                
+
             with column2:
-                
+
                 column_data, column_kind = st.columns([.7,.3])
                 with column_data:
                     selected_column = st.multiselect(
@@ -130,10 +107,6 @@ def distribution(data):
                 fig = pp.seaborn_violinplot(data,selected_column,selected_kind)
                 st.pyplot(fig)
                 descriptionBoxplot(selected_column)
-        # st.header(":blue[Pairwise Plot]")
-        # st.markdown("""
-        #             * In short: Allows to visualize both the distribution of single variable and the relationship between two variables..
-        #             """)
         with tabs3:
             st.markdown('''
             *The default attributes were selected based on the relation with the target*
@@ -160,7 +133,6 @@ def distribution(data):
 def correlation(data):
 
     with st.expander("Data Relationship Panel",expanded=True):
-        # st.subheader(":blue[OverView]")
         st.markdown("""
 
                 * The :blue[GRE Score, CGPA,TOEFL Score] are the main independent candidate that pontentially can explain the changes in the target variable (:blue[Chance of Admit]).
@@ -237,8 +209,7 @@ def correlation(data):
             
             fig = pp.seaborn_heatmap(data, selected_column)
             st.pyplot(fig)
-        #descriptionCorr(selected_column,selected_target)
-        
+                    
 def descriptionHist(selected_column): 
     st.caption(f'You can visualize how the :blue[{selected_column.upper()}] is distributed and you can spot and identify any known trend.Is it normal distributed or skew to the right or left?.')
 

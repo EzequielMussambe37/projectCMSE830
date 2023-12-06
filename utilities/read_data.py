@@ -11,6 +11,5 @@ def read_file(extension,delimiter, file):
     elif extension == "xlsx":
         f = pd.read_excel(file,delimiter=delimiter) 
     f.drop(f.columns[f.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
-    #if "data_file" not in st.session_state:
     
     return f
