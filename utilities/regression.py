@@ -32,7 +32,7 @@ def app():
             model_type = st.selectbox("Please Select Regression Model",models)
         #st.markdown("___")
         st.subheader("3. Model Evaluation")
-        inputs = st.radio("Pick Test Data",["Test Data Original","Input test Data"])
+        inputs = st.radio("Pick Test Data",["Test Original Data","Input test Data"])
         
         cols= st.columns(len(features))
         data_user = {}
