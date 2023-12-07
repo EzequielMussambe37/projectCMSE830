@@ -30,6 +30,7 @@ def app():
                 """,unsafe_allow_html=True)
     
     data = read_data.read_file("csv",",", "./utilities/admission.csv")
+    st.session_state.data_file = data
     if "data_file" not in st.session_state:
         st.session_state["data_file"]= data
     tab1, tab2, tab3,tab4 = st.tabs(["DATA 📝", "COLUMN INFO ℹ️", "STATISTIC SUMMARY 🔢","CORRELATION MATRIX 📈"])
