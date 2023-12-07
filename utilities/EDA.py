@@ -4,7 +4,7 @@ from utilities import projectPlots as pp, read_data
 # Loading the data
 @st.cache_data
 def load_data():
-    data = read_data.read_file("csv",",", "./utilities/chances.csv")
+    data = read_data.read_file("csv",",", "./utilities/admission.csv")
     return data
 
 #Main app Function.
