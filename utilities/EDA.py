@@ -52,8 +52,8 @@ def distribution(data):
             with column1:
                 selected_column = st.selectbox(
                     "",
-                    data.columns[1:],
-                    index=len(data.columns[1:])-1,
+                    data.columns,
+                    index=len(data.columns)-1,
                     key = "hist-dis"
                 )
                 fig = pp.seaborn_hist(data,selected_column)
@@ -63,7 +63,7 @@ def distribution(data):
             with column2:
                 selected_column = st.selectbox(
                     "",
-                    data.columns[1:],
+                    data.columns,
                     index=5,
                     key="dist-dist"
                 )
@@ -78,7 +78,7 @@ def distribution(data):
             with column1:
                 selected_column = st.multiselect(
                     "",
-                    data.columns[1:],
+                    data.columns,
                     default=data.columns[-1],
                     key="box-dist"
                 )
@@ -92,8 +92,8 @@ def distribution(data):
                 with column_data:
                     selected_column = st.multiselect(
                         "",
-                        data.columns[1:],
-                        default=[data.columns[1]],
+                        data.columns,
+                        default=[data.columns[0]],
                         key="violin-dist1"
                     )
                 with column_kind:
@@ -146,21 +146,21 @@ def correlation(data):
             with column_x:
                 selected_column = st.selectbox(
                     "Select X attribute",
-                    data.columns[1:],
+                    data.columns,
                     key="x-corr"
                 )
             with column_y:
                 selected_target = st.selectbox(
                     "Select Target",
-                    data.columns[1:],
-                    index=len(data.columns[1:])-1,
+                    data.columns,
+                    index=len(data.columns)-1,
                     key="target-corr"
                 )
             with column_color:
                 selected_color = st.selectbox(
                     "Select color attribute",
-                    data.columns[1:],
-                    index=len(data.columns[1:])-1,
+                    data.columns,
+                    index=len(data.columns)-1,
                     key="color-corr"
                 ) 
 
@@ -173,20 +173,20 @@ def correlation(data):
             with column_x:
                 selected_column = st.selectbox(
                     "Select X attribute",
-                    data.columns[1:],
+                    data.columns,
                     key="x-joint"
                 )
             with column_y:
                 selected_target = st.selectbox(
                     "Select Target",
-                    data.columns[1:],
-                    index=len(data.columns[1:])-1,
+                    data.columns,
+                    index=len(data.columns)-1,
                     key="target-joint"
                 )
             with column_hue:
                 selected_hue = st.selectbox(
                     "Select hue",
-                    [None] + list(data.columns[1:]),
+                    [None] + list(data.columns),
                     key="hue-joint"
                 ) 
             with column_color:
@@ -202,8 +202,8 @@ def correlation(data):
             st.header(":blue[Correlation Matrix( HeatMap)]")
             selected_column = st.multiselect(
                 "Select Attribute",
-                data.columns[1:],
-                default=[data.columns[-1],data.columns[1],data.columns[2]],
+                data.columns,
+                default=[data.columns[-1],data.columns[0],data.columns[1]],
                 key="heat-corr"
                 )
             

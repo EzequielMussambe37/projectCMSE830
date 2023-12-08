@@ -17,7 +17,7 @@ def app():
                 This research adds to graduate admissions knowledge through a quantitative approach. 
                         """)
         st.markdown("""
-                        Future studies can delve into additional features, nonlinear relationships or focus on specific academic programs for more refined predictive model.
+                        Future studies can explore into additional features, nonlinear relationships or focus on specific academic programs for more refined predictive model.
                 Universities and applicants alike can gain from understanding the contributing variables.
 
                         """)

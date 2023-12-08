@@ -7,8 +7,7 @@ from sklearn.metrics import r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
-# def preprocessing():
-import streamlit as st
+import numpy as np
 def linear_regression(X,y,train_size=80,random_state = 23):
     
     X_train, X_test, y_train, y_test = train_test_split(X,y,train_size=train_size,random_state=random_state)
@@ -22,9 +21,10 @@ def linear_regression(X,y,train_size=80,random_state = 23):
 def model_evaluation(result):
     
     y_predicted = predict_incoming(result["model"],result["X_test"])
-    mse = mean_squared_error(y_predicted,result["y_test"])
+    mse = np.sqrt(mean_squared_error(y_predicted,result["y_test"]))
     mae = mean_absolute_error(y_predicted,result["y_test"])
-    r_squared = r2_score(result["y_test"],y_predicted)
+    #r_squared = r2_score(result["y_test"],y_predicted)
+    r_squared = result["model"].score(result["X_test"],result["y_test"])
 
     return {"mse":mse,"mae":mae,"r_squared":r_squared,"predicted":y_predicted} 
 def construct_regression_table(model,columns):

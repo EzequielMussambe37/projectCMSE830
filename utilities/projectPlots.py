@@ -50,7 +50,7 @@ def seaborn_plot_residual(y_test,y_predict):
     ax = fig.add_subplot(122)
     sns.distplot((y_test - y_predict),ax=ax,color='b')
     ax.axvline((y_test - y_predict).mean(),color='r',linestyle='--')
-    ax.set_title('Check for Residual normality & mean: \n Residual error')
+    ax.set_title('Check for Residual normality')
     return fig
 def seaborn_pairwise(data,columns,hue=None):
     fig = sns.pairplot(data[columns], hue=hue)
@@ -67,7 +67,8 @@ def seaborn_heatmap(data,columns):
     
     fig = define_size()
     if len(columns) > 1:
-        sns.heatmap(data[columns], annot=True)
+        sns.heatmap(data[columns])
+        
     else:
         sns.heatmap(data[columns], annot=True)
         
