@@ -70,7 +70,7 @@ def seaborn_heatmap(data,columns):
         sns.heatmap(data[columns])
         
     else:
-        sns.heatmap(data[columns], annot=True)
+        sns.heatmap(data[columns])
         
     return fig
 def seaborn_boxplot(data,columns):
