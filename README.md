@@ -10,7 +10,7 @@ ___
 
 ## Introduction
     For many undergraduate international students, the decision to pursue postgraduate studies is fraught with uncertainties. The dilemma often pivots around continuing education immediately after their undergraduate degree or taking a break from academia. With the decision to persue a high education araise the question "Is my academic portfolio competitive for admission to a reputable universities or highly ranked institutions around the world.
-### <span style="color:blue">File:</span>
+### <span style="color:blue">Files:</span>
 
 * projectPlots.py - All the project plots Functions
 * home.py - Main home file on runtime
