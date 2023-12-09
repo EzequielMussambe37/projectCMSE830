@@ -17,7 +17,7 @@ class mainApp:
         selected = menu.menuSettings() 
         try:
             if selected == "Portofolio":
-                st.write("reachable")
+                #st.write("reachable")
                 ur = "https://portfolio-em.streamlit.app/?embed=true"
                 st.markdown("""<iframe src=https://portfolio-em.streamlit.app/?embed=true height=900 frameBorder=0 style="width:100%;border:none;"></iframe >""",unsafe_allow_html=True)
             else: 
