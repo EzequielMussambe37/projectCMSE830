@@ -65,7 +65,7 @@ def app():
         column1,column2 = st.columns(2)
         with column1:
             st.markdown(f"""<ul>
-                <li>Number of Recors: {data.shape[0]} ✅</li>
+                <li>Number of Records: {data.shape[0]} ✅</li>
                 <li>Number of Attributes: {data.shape[1]} ✅</li>
             </ul>""",
             unsafe_allow_html=True)
